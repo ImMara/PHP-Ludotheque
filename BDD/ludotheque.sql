@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : Dim 27 sep. 2020 à 13:53
+-- Généré le : Dim 27 sep. 2020 à 15:01
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -75,8 +75,7 @@ CREATE TABLE IF NOT EXISTS `membre` (
 --
 
 INSERT INTO `membre` (`id_membre`, `login`, `password`, `email`) VALUES
-(1, 'admin', '$2y$10$u.s5AfJoVdiLDQpZYF0wtuogIR4u.mWPl17kVC8KqXOHtO2afpZQ6', 'alaneraerts@live.be'),
-(2, 'test', 'test', '');
+(1, 'admin', '$2y$10$u.s5AfJoVdiLDQpZYF0wtuogIR4u.mWPl17kVC8KqXOHtO2afpZQ6', 'alaneraerts@live.be');
 
 -- --------------------------------------------------------
 
