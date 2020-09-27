@@ -105,11 +105,11 @@
                 }
                 else
                 {
-                    header("LOCATION:updateGame.php?id=".$id."&fich=".$erreur);
+                    header("LOCATION:updateGame.php?id=".$id."&uperror=".$erreur);
                 }   
             }
         }else{
-            header("LOCATION:updateGame.php?id=".$id."err=".$err);
+            header("LOCATION:updateGame.php?id=".$id."&err=".$err);
         }
 
     }else{

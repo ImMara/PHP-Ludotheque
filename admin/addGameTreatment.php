@@ -88,7 +88,7 @@
                 }
                 else
                 {
-                    header("LOCATION:addGame.php?error=1&fich=".$erreur);
+                    header("LOCATION:addGame.php?error=1&uperror=".$erreur);
                 }   
             }
         }else{

@@ -29,18 +29,54 @@ if(!isset($_SESSION['login'])){
             <label for="nom" class="text-white">Nom: </label>
             <input type="text" value="" id="nom" name="nom" class="bg-dark text-white form-control">
         </div>
+         <?php
+         if(isset($_GET['err'])){
+            if($_GET['err']==1){
+                echo "<div class=\"alert alert-warning\" role=\"alert\">
+                         Champs invalide : Entrée un nom de jeux .
+                      </div>";
+            }
+        }
+        ?>
         <div class="form-group">
             <label for="description" class="text-white">Description: </label>
             <textarea  value="" id="description" name="description" class="text-white bg-dark form-control"></textarea>
         </div>
+        <?php
+         if(isset($_GET['err'])){
+            if($_GET['err']==2){
+                echo "<div class=\"alert alert-warning\" role=\"alert\">
+                         Champs invalide : Entrée une description .
+                      </div>";
+            }
+        }
+        ?>
         <div class="form-group">
             <label for="editeur" class="text-white">Editeur: </label>
             <input type="text" value="" id="editeur" name="editeur" class="text-white bg-dark form-control">
         </div>
+        <?php
+         if(isset($_GET['err'])){
+            if($_GET['err']==3){
+                echo "<div class=\"alert alert-warning\" role=\"alert\">
+                         Champs invalide : Entrée un editeur .
+                      </div>";
+            }
+        }
+        ?>
         <div class="form-group">
             <label for="type" class="text-white">Type: </label>
             <input type="text" value="" id="type" name="type" class="text-white bg-dark form-control">
         </div>
+        <?php
+         if(isset($_GET['err'])){
+            if($_GET['err']==4){
+                echo "<div class=\"alert alert-warning\" role=\"alert\">
+                         Champs invalide : Entrée un type de jeux .
+                      </div>";
+            }
+        }
+        ?>
         <div class="form-group">
             <label for="type" class="text-white">Support: </label>
             <select name="support" id="type" class="text-white bg-dark form-control">
@@ -62,10 +98,33 @@ if(!isset($_SESSION['login'])){
                 ?>
             </select>
         </div>
+        <?php
+         if(isset($_GET['err'])){
+            if($_GET['err']==5){
+                echo "<div class=\"alert alert-warning\" role=\"alert\">
+                         Champs invalide : Choix de support obligatoire .
+                      </div>";
+            }
+        }
+        ?>
         <div class="custom-file bg-dark">
             <input type="file" class="bg-dark custom-file-input" id="file" name="fichier">
             <label for="file" class="text-white bg-dark custom-file-label">Choisir le fichier</label>
         </div>
+        <?php
+         if(isset($_GET['upload'])){
+            if($_GET['upload']=="echec"){
+                echo "<div class=\"alert alert-warning\" role=\"alert\">
+                         Erreur upload , réessayer
+                      </div>";
+            }
+        }
+        if(isset($_GET['uperror'])){
+                    echo "<div class=\"alert alert-warning\" role=\"alert\">
+                        Erreur upload : ".htmlspecialchars($_GET['uperror'])."
+                      </div>";
+                }
+        ?>
         <div class="form-group">
             <input type="submit" value="Ajouter" class="btn btn-info my-3">
             <a href="admin.php" class="btn btn-danger my-3 mx-1">Retour</a>
