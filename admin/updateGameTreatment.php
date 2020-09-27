@@ -93,9 +93,9 @@
                         ]);
                         $update->closeCursor();
                         if($extension==".png"){
-                            header("LOCATION:redimpng.php?image=".$fichiercpt1);
+                            header("LOCATION:redimpng.php?image=".$fichiercpt1."&update");
                         }else{
-                            header("LOCATION:redim.php?image=".$fichiercpt1);
+                            header("LOCATION:redim.php?image=".$fichiercpt1."&update");
                         }               
                     }
                     else 

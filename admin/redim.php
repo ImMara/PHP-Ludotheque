@@ -45,11 +45,10 @@ imagejpeg($destination,$rep_nom,80);
 
 // redirection
 
-if($_GET['insert']){
+if(isset($_GET['insert'])){
 	header("LOCATION:admin.php?insert=success");
 }else{
-	header("LOCATION:admin.php?update=sucess");
+	header("LOCATION:admin.php?update=success");
 }
-
 
 ?>

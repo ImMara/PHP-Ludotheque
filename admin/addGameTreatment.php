@@ -33,13 +33,14 @@
             require '../connexions.php';
             if(empty($_FILES['fichier']['tmp_name'])){
                 // no image
-                $insert = $bdd->prepare('INSERT INTO jeux(nom,description,editeur,type,id_support)VALUES(:nom,:description,:editeur,:type,:id_support)');
+                $insert = $bdd->prepare('INSERT INTO jeux(nom,description,editeur,type,id_support,pochette)VALUES(:nom,:description,:editeur,:type,:id_support,:pochette)');
                 $insert->execute([
                     ":nom"=>$nom,
                     ":description"=>$description,
                     ":editeur"=>$editeur,
                     ":type"=>$type,
-                    ":id_support"=>$_POST['support']
+                    ":id_support"=>$_POST['support'],
+                    ":pochette"=>"default.png"
                 ]);
                 $insert->closeCursor();
                 header("LOCATION:admin.php?insert=success");
@@ -76,9 +77,9 @@
                         ]);
                         $insert->closeCursor();
                         if($extension==".png"){
-                            header("LOCATION:redimpng.php?image=".$fichiercpt1)."&insert";
+                            header("LOCATION:redimpng.php?image=".$fichiercpt1."&insert");
                         }else{
-                            header("LOCATION:redim.php?image=".$fichiercpt1)."&insert";
+                            header("LOCATION:redim.php?image=".$fichiercpt1."&insert");
                         }               
                     }
                     else 

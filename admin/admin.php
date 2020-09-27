@@ -23,6 +23,17 @@
 <div class="container">
 <?php
 include 'nav.php';
+
+if(isset($_GET['insert'])){
+  echo "<div class=\"alert alert-success\" role=\"alert\">
+             insert success bitch!
+        </div>";
+}
+if(isset($_GET['update'])){
+    echo "<div class=\"alert alert-success\" role=\"alert\">
+             update success bitch!
+        </div>";
+}
 ?>
 <table class="table table-hover table-dark">
     <thead>
