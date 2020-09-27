@@ -48,12 +48,10 @@ imagepng($destination,$rep_nom);
 
 // redirection
 
-// if($_GET['insert']){
+if($_GET['insert']){
 	header("LOCATION:admin.php?insert=success");
-// }else{
-	// header("LOCATION:admin.php?update=sucess");
-// }
-
-
+}else{
+	header("LOCATION:admin.php?update=sucess");
+}
 
 ?>
