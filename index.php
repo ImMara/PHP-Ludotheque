@@ -27,7 +27,7 @@ include "header.php";
             $link = $don['id'];
 
             echo "<div class=\"card col-lg-3 mt-3 bg-secondary p-0 \" style=\"height:300px;\">
-            <img src=\"images\\$images\" class=\"card-img-top\" style='height: 60%;object-fit: cover' alt=\"$images\">
+            <img src=\"images\mini_$images\" class=\"card-img-top\" style='height: 60%;object-fit: cover' alt=\"$images\">
                 <div class=\"card-body\">
                     <p class=\"card-text text-white text-center mb-2\" style='text-transform: uppercase;'>$title</p>
                  <div class=\"d-flex justify-content-center\">
