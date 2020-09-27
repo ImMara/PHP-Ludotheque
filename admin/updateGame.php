@@ -13,7 +13,7 @@ if(isset($_GET['id'])){
         header("LOCATION:admin.php");
     }
 }else{
-    header('LOCATION:admin.php');
+    header('LOCATION:admin.php?iderr');
 }
 ?>
 <!doctype html>
@@ -33,8 +33,8 @@ if(isset($_GET['id'])){
     <?php
     include "nav.php";
     ?>
-    <h1 class="text-info">Ajouter un jeux</h1>
-    <form action="addGameTreatment.php" method="POST" enctype="multipart/form-data">
+    <h1 class="text-info">Modifier le jeux : <?=$don['nom']?></h1>
+    <form action="updateGameTreatment.php?id=<?=$don['id']?>" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="nom" class="text-white">Nom: </label>
             <input type="text" value="<?=$don['nom']?>" id="nom" name="nom" class="bg-dark text-white form-control">
@@ -48,8 +48,12 @@ if(isset($_GET['id'])){
             <input type="text" value="<?=$don['editeur']?>" id="editeur" name="editeur" class="text-white bg-dark form-control">
         </div>
         <div class="form-group">
+            <div class="form-group">
             <label for="type" class="text-white">Type: </label>
-            <select name="type" id="type" class="text-white bg-dark form-control">
+            <input type="text" value="<?=$don['type']?>" id="type" name="type" class="text-white bg-dark form-control">
+        </div>
+            <label for="support" class="text-white">Support: </label>
+            <select name="support" id="support" class="text-white bg-dark form-control">
                 <?php
 
                 require "../connexions.php";
@@ -73,7 +77,7 @@ if(isset($_GET['id'])){
             <label for="file" class="text-white bg-dark custom-file-label">Choisir le fichier</label>
         </div>
         <div class="form-group">
-            <input type="submit" value="Ajouter" class="btn btn-info my-3">
+            <input type="submit" value="Modifier" class="btn btn-info my-3">
             <a href="admin.php" class="btn btn-danger my-3 mx-1">Retour</a>
         </div>
     </form>

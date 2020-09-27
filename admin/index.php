@@ -2,6 +2,7 @@
 session_start();
 
 if(isset($_POST['login'])){
+    $err="";
     if($_POST['login']=="" && $_POST['password']){
         $err="<div class='alert alert-danger'>Veuillez remplir correctement le formulaire</div>";
     }else{
@@ -43,7 +44,7 @@ if(isset($_POST['login'])){
             <strong>Sign in</strong>
         </h5>
         <div class="card-body px-lg-5 pt-3">
-            <form class="text-center" action="index.php" method="post" style="width: 300px;height:30S0px">
+            <form class="text-center" action="index.php" method="post" style="width: 300px;height:300px">
                 <div class="md-form">
                     <label for="login">Login</label>
                     <input type="text" id="login" name="login" class="form-control">

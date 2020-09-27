@@ -39,7 +39,13 @@ if(!isset($_SESSION['login'])){
         </div>
         <div class="form-group">
             <label for="type" class="text-white">Type: </label>
-            <select name="type" id="type" class="text-white bg-dark form-control">
+            <input type="text" value="" id="type" name="type" class="text-white bg-dark form-control">
+        </div>
+        <div class="form-group">
+            <label for="type" class="text-white">Support: </label>
+            <select name="support" id="type" class="text-white bg-dark form-control">
+
+                <option class="text-white" value="" selected hidden>Choisis le support</option>
                 <?php
 
                 require "../connexions.php";

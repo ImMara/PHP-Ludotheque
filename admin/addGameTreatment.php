@@ -21,24 +21,33 @@
         }else{
             $err=3;
         }
+        if(!empty($_POST['type'])){
+            $type=htmlspecialchars($_POST['type']);
+        }else{
+            $err=4;
+        }
+        if(empty($_POST['support'])){
+            $err=5;
+        }
         if($err==0){
             require '../connexions.php';
             if(empty($_FILES['fichier']['tmp_name'])){
                 // no image
-                $insert = $bdd->prepare('INSET INTO jeux(nom,description,editeur,type)VALUES(:nom,:description,:editeur,:type)');
+                $insert = $bdd->prepare('INSERT INTO jeux(nom,description,editeur,type,id_support)VALUES(:nom,:description,:editeur,:type,:id_support)');
                 $insert->execute([
                     ":nom"=>$nom,
                     ":description"=>$description,
                     ":editeur"=>$editeur,
-                    ":type"=>$_POST['editeur']
+                    ":type"=>$type,
+                    ":id_support"=>$_POST['support']
                 ]);
                 $insert->closeCursor();
-                header("LOCATION:addGame.php?insert=success");
+                header("LOCATION:admin.php?insert=success");
             }else{
                 //file
                 $dossier = '../images/';
-                $fichier= basename($_FILES['fichier']['tmp_name']);
-                $taille_maxi = 20000;
+                $fichier= basename($_FILES['fichier']['name']);
+                $taille_maxi = 2000000;
                 $taille=filesize($_FILES['fichier']['tmp_name']);
                 $extensions = ['.png','.jpg','.jpeg'];
                 $extension= strrchr($_FILES['fichier']['name'],'.');
@@ -53,10 +62,39 @@
                     $fichier = strtr($fichier,
                         'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
                         'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-                    )
+                    $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+                    $fichiercpt1=rand().$fichier;
+                    if(move_uploaded_file($_FILES['fichier']['tmp_name'],$dossier.$fichiercpt1)){
+                        $insert = $bdd->prepare('INSERT INTO jeux(nom,description,editeur,type,id_support,pochette)VALUES(:nom,:description,:editeur,:type,:id_support,:pochette)');
+                        $insert->execute([
+                            ":nom"=>$nom,
+                            ":description"=>$description,
+                            ":editeur"=>$editeur,
+                            ":type"=>$type,
+                            ":id_support"=>$_POST['support'],
+                            ":pochette"=>$fichiercpt1
+                        ]);
+                        $insert->closeCursor();
+                        if($extension==".png"){
+                            header("LOCATION:redimpng.php?image=".$fichiercpt1)."&insert";
+                        }else{
+                            header("LOCATION:redim.php?image=".$fichiercpt1)."&insert";
+                        }               
+                    }
+                    else 
+                    {
+                        header("LOCATION:addGame.php?error=1&upload=echec");
+                    }
                 }
+                else
+                {
+                    header("LOCATION:addGame.php?error=1&fich=".$erreur);
+                }   
             }
+        }else{
+            header("LOCATION:addGame.php?err=".$err);
         }
-    }else{ // FIN FORMULAIRE CHECK
 
+    }else{
+        header("LOCATION:addGame.php");
     }
