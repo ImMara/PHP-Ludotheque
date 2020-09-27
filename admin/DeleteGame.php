@@ -18,7 +18,7 @@
 		}
 		$req->closeCursor();
 	}else{
-		header("LOCATION:articles.php");
+		header("LOCATION:admin.php");
 	}
 	if(isset($_GET['delete'])){
 		if(!empty($don['pochette'])){
